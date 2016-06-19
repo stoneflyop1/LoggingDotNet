@@ -3,6 +3,7 @@
 TraceÓĞÁ½ÖÖ·½Ê½£¬Ò»ÖÖÊÇÖ±½ÓÓÃTraceÀàµÄ¾²Ì¬·½·¨£¬»¹ÓĞÒ»ÖÖÊÇÓÃTraceSource¡£Á½Õß¿ÉÒÔ¹²ÓÃListener¡£Ê¾Àı´úÂë¼û£º[LoggingTrace](LoggingTrace/)
 
 ´úÂëÅäÖÃÊ¾ÀıÈçÏÂ£º
+
     using System.Diagnostics;
     ...
     Trace.AutoFlush = true;
@@ -16,6 +17,7 @@ TraceÓĞÁ½ÖÖ·½Ê½£¬Ò»ÖÖÊÇÖ±½ÓÓÃTraceÀàµÄ¾²Ì¬·½·¨£¬»¹ÓĞÒ»ÖÖÊÇÓÃTraceSource¡£Á½Õß¿ÉÒ
     Trace.WriteLine("End SimpleTrace...", "Info");
 
 app.configÅäÖÃÊ¾ÀıÈçÏÂ£¬ÈôĞèÒªÅäÖÃTraceSource£¬Çë²Î¿¼[MSDN.System.Diagnostics.TraceSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource.aspx)£º
+
     <system.diagnostics>
         <trace autoflush="true" indentsize="4">
           <!-- Shared Listener defined them, here you only need to declare them with their names -->
