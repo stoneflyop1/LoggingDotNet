@@ -1,9 +1,53 @@
 # C#中的Logging
 ## 使用Trace
-Trace有两种方式，一种是直接用Trace类的静态方法，还有一种是用TraceSource。两者可以共用Listener。
+Trace有两种方式，一种是直接用Trace类的静态方法，还有一种是用TraceSource。两者可以共用Listener。示例代码见：[LoggingTrace](LoggingTrace/)
+
+代码配置示例如下：
+    using System.Diagnostics;
+    ...
+    Trace.AutoFlush = true;
+    Trace.Listeners.Add(new ConsoleTraceListener());
+    Trace.Listeners.Add(new CustomTextListener("simpletrace.log"));
+    Trace.WriteLine("Start SimpleTrace...", "Info"); // Info: Start SimpleTrace...
+    Trace.Indent();
+    Trace.WriteLine("Indent Text...", "Info");
+    Trace.TraceInformation("Info..."); // exeName Information: 0 : Info...
+    Trace.Unindent();
+    Trace.WriteLine("End SimpleTrace...", "Info");
+
+app.config配置示例如下，若需要配置TraceSource，请参考[MSDN.System.Diagnostics.TraceSource](https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource.aspx)：
+    <system.diagnostics>
+        <trace autoflush="true" indentsize="4">
+          <!-- Shared Listener defined them, here you only need to declare them with their names -->
+          <listeners>
+          <add name="consleListener" />
+            <add name="textListener" />
+            <add name="customtextListener" />
+            <add name="customdatetextListener" />
+            <remove name="Default" />
+            </listeners>
+          <!-- If no shared listeners, use listeners below -->
+          <!--<listeners>
+            <add name="consleListener" type="System.Diagnostics.ConsoleTraceListener" />
+            <add name="textListener" type="System.Diagnostics.TextWriterTraceListener" initializeData="textwithconfig.log" />
+            <add name="customtextListener" type="LoggingTrace.Listeners.CustomTextListener, LoggingTrace" initializeData="customtextwithconfig.log" />
+            <add name="customdatetextListener" type="LoggingTrace.Listeners.CustomDateFileTextListener, LoggingTrace" />
+            <remove name="Default" />
+          </listeners>-->
+        </trace>
+        <sharedListeners>
+          <add name="consleListener" type="System.Diagnostics.ConsoleTraceListener" />
+          <add name="textListener" type="System.Diagnostics.TextWriterTraceListener" initializeData="textwithconfig.log" />
+          <add name="customtextListener" type="LoggingTrace.Listeners.CustomTextListener, LoggingTrace" initializeData="customtextwithconfig.log" />
+          <add name="customdatetextListener" type="LoggingTrace.Listeners.CustomDateFileTextListener, LoggingTrace" />
+        </sharedListeners>
+    </system.diagnostics>
+
+
+使用Trace类的静态方法是最简单的，但是无法快速定位日志输出的代码位置。TraceSource则可以有多个实例，每个实例都可以有不同的名称，这样就可以用类的名称作为TraceSource的名称，从而定位到当前日志输出属于哪个类。
 
 ## 使用log4net
-此部分参照了log4net的官方手册，其中大部分的实例都来自官方手册，略有改动。
+此部分参照了log4net的官方手册，其中大部分的实例都来自官方手册，略有改动。示例代码见：[Log4netSamples](Log4netSamples/)
 ### log4net简介
 log4net是Apache主导的基于微软的.NET的Log系统，与Java中的log4j对应。
 log在软件的开发过程中是很重要的一个方面。log可以提供软件执行的日志，设计良好的log可以帮助开发人员更加明确软件执行的过程，软件出BUG时可以更快的定位问题所在等。笔者认为，设计良好的log首先要能做到不同的log要有所区分，一般的信息，是警告信息，还是出错信息。根据这些不同的级别可以在不同的地方进行log的输出。log4net就提供了log的级别划分。而且，log4net还有一个非常棒的特性，定制log输出只需要配置就可以了。
@@ -165,7 +209,7 @@ app.config内容如下：
 
 
 下面给出一种结合了外部配置文件和app.config的配置方式。
-首先准备好外部配置文件，比如：config.xml。
+首先准备好外部配置文件，比如：config.xml(`注意：不要忘记把配置文件设置为拷贝到输出文件夹`)。
 在app.config的appSettings中添加：
 
     <add key="log4net.Config" value="config.xml"/>

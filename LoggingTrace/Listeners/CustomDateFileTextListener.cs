@@ -9,7 +9,7 @@ using System.IO;
 namespace LoggingTrace.Listeners
 {
     /// <summary>
-    /// Creating a new log file each second
+    /// Creating a new log file each second with datetime as filename, only for demo
     /// </summary>
     public class CustomDateFileTextListener : TextWriterTraceListener
     {
@@ -45,7 +45,7 @@ namespace LoggingTrace.Listeners
                     _dateStr = fileName;
                     Writer.Flush();
                     Writer.Dispose();
-                    Writer = new StreamWriter(fileName + ".log", true, Encoding.Default);
+                    Writer = new StreamWriter(_dateStr + ".log", true, Encoding.Default);
                 }
 
             }
