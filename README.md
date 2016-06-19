@@ -3,9 +3,9 @@
 Trace有两种方式，一种是直接用Trace类的静态方法，还有一种是用TraceSource。两者可以共用Listener。
 
 ## 使用log4net
-本文参照了log4net的官方手册，其中大部分的实例都来自官方手册，略有改动。
+此部分参照了log4net的官方手册，其中大部分的实例都来自官方手册，略有改动。
 ### log4net简介
-log4net是Apache主导的基于微软的.NET的Log系统，与Java中的log4j对应。[^log4j]
+log4net是Apache主导的基于微软的.NET的Log系统，与Java中的log4j对应。
 log在软件的开发过程中是很重要的一个方面。log可以提供软件执行的日志，设计良好的log可以帮助开发人员更加明确软件执行的过程，软件出BUG时可以更快的定位问题所在等。笔者认为，设计良好的log首先要能做到不同的log要有所区分，一般的信息，是警告信息，还是出错信息。根据这些不同的级别可以在不同的地方进行log的输出。log4net就提供了log的级别划分。而且，log4net还有一个非常棒的特性，定制log输出只需要配置就可以了。
 
  - ALL
@@ -16,7 +16,6 @@ log在软件的开发过程中是很重要的一个方面。log可以提供软件执行的日志，设计良好的lo
  - FATAL
  - OFF
 
-[^log4j]: log4j同样是Apache开发的。
 
 ### loggers和appenders
 log4net主要包含三个部分：logger、appender以及layout。logger是log输出的定义实体，通过指定不同的appender给logger即可在不同的介质中输出log；appender即定义好的输出log的方式，而layout是跟appender紧密相连的，是指appender输出的格式。
