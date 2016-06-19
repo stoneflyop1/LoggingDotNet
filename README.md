@@ -2,7 +2,180 @@
 ## Ê¹ÓÃTrace
 TraceÓĞÁ½ÖÖ·½Ê½£¬Ò»ÖÖÊÇÖ±½ÓÓÃTraceÀàµÄ¾²Ì¬·½·¨£¬»¹ÓĞÒ»ÖÖÊÇÓÃTraceSource¡£Á½Õß¿ÉÒÔ¹²ÓÃListener¡£
 
+## Ê¹ÓÃlog4net
+±¾ÎÄ²ÎÕÕÁËlog4netµÄ¹Ù·½ÊÖ²á£¬ÆäÖĞ´ó²¿·ÖµÄÊµÀı¶¼À´×Ô¹Ù·½ÊÖ²á£¬ÂÔÓĞ¸Ä¶¯¡£
+### log4net¼ò½é
+log4netÊÇApacheÖ÷µ¼µÄ»ùÓÚÎ¢ÈíµÄ.NETµÄLogÏµÍ³£¬ÓëJavaÖĞµÄlog4j¶ÔÓ¦¡£[^log4j]
+logÔÚÈí¼şµÄ¿ª·¢¹ı³ÌÖĞÊÇºÜÖØÒªµÄÒ»¸ö·½Ãæ¡£log¿ÉÒÔÌá¹©Èí¼şÖ´ĞĞµÄÈÕÖ¾£¬Éè¼ÆÁ¼ºÃµÄlog¿ÉÒÔ°ïÖú¿ª·¢ÈËÔ±¸ü¼ÓÃ÷È·Èí¼şÖ´ĞĞµÄ¹ı³Ì£¬Èí¼ş³öBUGÊ±¿ÉÒÔ¸ü¿ìµÄ¶¨Î»ÎÊÌâËùÔÚµÈ¡£±ÊÕßÈÏÎª£¬Éè¼ÆÁ¼ºÃµÄlogÊ×ÏÈÒªÄÜ×öµ½²»Í¬µÄlogÒªÓĞËùÇø·Ö£¬Ò»°ãµÄĞÅÏ¢£¬ÊÇ¾¯¸æĞÅÏ¢£¬»¹ÊÇ³ö´íĞÅÏ¢¡£¸ù¾İÕâĞ©²»Í¬µÄ¼¶±ğ¿ÉÒÔÔÚ²»Í¬µÄµØ·½½øĞĞlogµÄÊä³ö¡£log4net¾ÍÌá¹©ÁËlogµÄ¼¶±ğ»®·Ö¡£¶øÇÒ£¬log4net»¹ÓĞÒ»¸ö·Ç³£°ôµÄÌØĞÔ£¬¶¨ÖÆlogÊä³öÖ»ĞèÒªÅäÖÃ¾Í¿ÉÒÔÁË¡£
 
+ - ALL
+ - DEBUG
+ - INFO
+ - WARN
+ - ERROR
+ - FATAL
+ - OFF
+
+[^log4j]: log4jÍ¬ÑùÊÇApache¿ª·¢µÄ¡£
+
+### loggersºÍappenders
+log4netÖ÷Òª°üº¬Èı¸ö²¿·Ö£ºlogger¡¢appenderÒÔ¼°layout¡£loggerÊÇlogÊä³öµÄ¶¨ÒåÊµÌå£¬Í¨¹ıÖ¸¶¨²»Í¬µÄappender¸ølogger¼´¿ÉÔÚ²»Í¬µÄ½éÖÊÖĞÊä³ölog£»appender¼´¶¨ÒåºÃµÄÊä³ölogµÄ·½Ê½£¬¶ølayoutÊÇ¸úappender½ôÃÜÏàÁ¬µÄ£¬ÊÇÖ¸appenderÊä³öµÄ¸ñÊ½¡£
+#### loggers
+ÔÚÍ¬Ò»¸öÈí¼şÖĞ£¬¿ÉÒÔ¶¨Òå¶à¸ö²»Í¬µÄloggerÒÔÍê³É²»Í¬ÀàĞÍµÄlogÊä³ö¡£ÕâĞ©²»Í¬µÄloggerÖ®¼ä¿ÉÒÔÓĞÒ»¶¨µÄ¸¸×Ó¹ØÏµ¡£
+ÆäÖĞ×îÌØÊâµÄÒ»¸öloggerÊÇroot£¬ÊÇËùÓĞÆäËûloggerµÄ¸ù¡£¸¸×Ó¹ØÏµÊÇÍ¨¹ıloggerµÄÃû³ÆÈ·¶¨µÄ£¬Æä¹æÔòÓëC#ÖĞµÄÃüÃû¿Õ¼äÀàËÆ¡£ÀıÈç£ºÃû³ÆÎª¡°A¡±µÄloggerÊÇÃû³ÆÎª¡°A.X¡±µÄloggerµÄ¸¸logger¡£Ò»°ãµØ£¬Ã¿¸ölogger¶¼ÊÇÒ»¸öÀà£¬ÆäÃû³Æ¾ÍÊÇÀàµÄÈ«Ãû(°üÀ¨ÃüÃû¿Õ¼ä²¿·Ö)¡£
+¸ù¾İ¸¸×Ó¹ØÏµ£¬Èô×ÓloggerÎ´Ö¸¶¨Êä³ö¼¶±ğ£¬Ôò»á¼Ì³Ğ¸¸loggerµÄ¼¶±ğ¡£`ÔÚlog4netÖĞ£¬loggerÓÉILog½Ó¿Ú±íÊ¾¡£`
+#### appenders
+appender»áÖ¸¶¨log×îÖÕÒªÊä³öµÄµØ·½£¬±ÈÈçÊÇÎÄ¼ş¡¢¿ØÖÆÌ¨¡¢»¹ÊÇÍ¨¹ıÍøÂç´«ÊäµÈ¡£Òª×Ô¶¨ÒålogÊä³öµÄµØ·½£¬ĞèÒª¼Ì³Ğlog4netÖĞµÄappenderÀà¡£
+
+ * log4net.Appender.ConsoleAppender
+ * log4net.Appender.FileAppender
+ * log4net.Appender.RollingFileAppender
+ * log4net.Appender.TraceAppender
+ * log4net.Appender.EventLogAppender
+ * ...
+
+### log4netµÄÅäÖÃ£¨Configuration£©
+ÎªÁËÓĞÒ»¸ö¸ĞĞÔµÄÈÏÊ¶£¬ÏÈÀ´¿´Ò»¸ö¼òµ¥µÄÀı×Ó£º
+	
+	using log4net;
+	using log4net.Config;	
+
+	public class MyApp 
+	{
+    	// Define a static logger variable so that it references the Logger instance named "MyApp".
+    	private static readonly ILog log = LogManager.GetLogger(typeof(MyApp));
+
+    	static void Main(string[] args) 
+    	{
+        	// Set up a simple configuration that logs on the console.
+        	BasicConfigurator.Configure();
+        	log.Info("Entering application.");
+        	System.Threading.Thread.Sleep(1000);
+        	log.Info("Exiting application.");
+    	}
+	}
+
+ÉÏÃæµÄÀı×ÓÊÇÅäÖÃÁËÒ»¸ö¿ØÖÆÌ¨µÄlogger½øĞĞÊä³ö£¬loggerµÄÃû×Ö½Ğ£ºMyApp£¬Appender²ÉÓÃµÄÊÇConsoleAppender¡£ÏÂÃæ¸ø³öÒ»¸öÓĞÁ½¸öloggerµÄÀı×Ó¡£µÚÒ»¸öÎÄ¼ş£ºMyApp.cs£º
+	//MyApp.cs
+	using Com.Foo;
+	using log4net;
+	using log4net.Config;
+
+	public class MyApp 
+	{
+    	private static readonly ILog log = LogManager.GetLogger(typeof(MyApp));
+
+    	static void Main(string[] args) 
+    	{
+        	BasicConfigurator.Configure();
+
+        	log.Info("Entering application.");
+        	Bar bar = new Bar();
+        	bar.DoIt();
+        	log.Info("Exiting application.");
+    	}
+	}
+
+µÚ¶ş¸öÎÄ¼ş£ºBar.cs
+
+	// Bar.cs
+	using log4net;
+
+	namespace Com.Foo
+	{
+    	public class Bar 
+    	{
+        	private static readonly ILog log = LogManager.GetLogger(typeof(Bar));
+
+        	public void DoIt()
+        	{
+            	log.Debug("Did it again!");
+        	}
+    	}
+	}
+
+
+ÉÏÃæµÄÁ½¸öÀı×Ó¶¼ÊÇ°´ÕÕÄ¬ÈÏµÄ¿ØÖÆÌ¨ÅäÖÃ¸ø³öµÄ£¬ÊÇlog4net×Ô´øµÄÅäÖÃ¡£ÈçºÎ×Ô¶¨ÒåÅäÖÃÁË£¬´ğ°¸ÊÇÍ¨¹ıXML¸ñÊ½ÅäÖÃ¡£ÏÂÃæ¸ø³öÒ»¸öÅäÖÃµÄÀı×Ó¡£Ö÷³ÌĞòÈçÏÂ£º
+
+	using Com.Foo;
+
+	// Import log4net classes.
+	using log4net;
+	using log4net.Config;
+
+	public class MyApp 
+	{
+    	private static readonly ILog log = LogManager.GetLogger(typeof(MyApp));
+
+    	static void Main(string[] args) 
+    	{
+        	// BasicConfigurator replaced with XmlConfigurator.
+        	XmlConfigurator.Configure(new System.IO.FileInfo(args[0]));
+
+        	log.Info("Entering application.");
+        	Bar bar = new Bar();
+        	bar.DoIt();
+        	log.Info("Exiting application.");
+    	}
+	}
+
+XMLÅäÖÃÎÄ¼şÏà¹ØÄÚÈİÈçÏÂ£º
+
+	<log4net>
+    <!-- A1 is set to be a ConsoleAppender -->
+    <appender name="A1" type="log4net.Appender.ConsoleAppender">
+        <!-- A1 uses PatternLayout -->
+        <layout type="log4net.Layout.PatternLayout">
+            <conversionPattern value="%-4timestamp [%thread] %-5level %logger %ndc - %message%newline" />
+        </layout>
+    </appender>    
+    <!-- Set root logger level to DEBUG and its only appender to A1 -->
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="A1" />
+    </root>
+    <!-- Print only messages of level WARN or above in the package Com.Foo -->
+    <logger name="Com.Foo">
+        <level value="WARN" />
+    </logger>
+	</log4net>
+
+ÉÏÃæÊÇ²ÉÓÃÍâ²¿ÎÄ¼ş½øĞĞÅäÖÃ£¬¿É·ñ°´ÕÕÓ¦ÓÃ³ÌĞòÅäÖÃÀ´×öÄØ£¿´ğ°¸ÊÇ¿ÉÒÔµÄ¡£Ö»ĞèÒª¶Ô³ÌĞò¼¯ÉùÃ÷Ò»¸öAttribute²¢ÔÚapp.configÖĞ¼ÓÈëÏàÓ¦µÄÅäÖÃÄÚÈİ¼´¿É¡£
+
+	[assembly: log4net.Config.XmlConfigurator(Watch=true)]
+
+app.configÄÚÈİÈçÏÂ£º
+
+	<?xml version="1.0" encoding="utf-8" ?>
+	<configuration>
+    <configSections>
+        <section name="log4net" type="log4net.Config.Log4NetConfigurationSectionHandler, log4net" />
+    </configSections>
+    <log4net>
+        <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender" >
+            <layout type="log4net.Layout.PatternLayout">
+                <conversionPattern value="%date [%thread] %-5level %logger [%ndc] - %message%newline" />
+            </layout>
+        </appender>
+        <root>
+            <level value="INFO" />
+            <appender-ref ref="ConsoleAppender" />
+        </root>
+    </log4net>
+	</configuration>
+
+
+ÏÂÃæ¸ø³öÒ»ÖÖ½áºÏÁËÍâ²¿ÅäÖÃÎÄ¼şºÍapp.configµÄÅäÖÃ·½Ê½¡£
+Ê×ÏÈ×¼±¸ºÃÍâ²¿ÅäÖÃÎÄ¼ş£¬±ÈÈç£ºconfig.xml¡£
+ÔÚapp.configµÄappSettingsÖĞÌí¼Ó£º
+
+    <add key="log4net.Config" value="config.xml"/>
+    <add key="log4net.Config.Watch" value="True"/>
+
+ÔÚ³ÌĞò¼¯ÖĞÉùÃ÷£º
+
+	//´Ë´¦µÄfalse½«²»Æğ×÷ÓÃ£¬×îÖÕ¿´log4net.Config.WatchµÄÅäÖÃµÄÖµ
+	[assembly: log4net.Config.XmlConfigurator(Watch = false)]
 
 
 ## ²Î¿¼
@@ -11,3 +184,5 @@ TraceÓĞÁ½ÖÖ·½Ê½£¬Ò»ÖÖÊÇÖ±½ÓÓÃTraceÀàµÄ¾²Ì¬·½·¨£¬»¹ÓĞÒ»ÖÖÊÇÓÃTraceSource¡£Á½Õß¿ÉÒ
 * https://msdn.microsoft.com/en-us/library/system.diagnostics.tracesource.aspx
 * http://blog.stephencleary.com/2010/12/simple-and-easy-tracing-in-net.html
 * http://stackoverflow.com/questions/21781510/loading-configuration-for-system-diagnostics-tracesource-from-an-xml-file
+* http://stackoverflow.com/questions/24172868/tracesource-set-autoflush-to-true-without-config-file
+* http://logging.apache.org/log4net/

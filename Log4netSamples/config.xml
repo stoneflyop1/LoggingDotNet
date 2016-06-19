@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net> <!-- http://logging.apache.org/log4net/release/config-examples.html -->
+  <!--Below changes level displaynames-->
+  <level>
+    <name value="INFO" />
+    <displayName value="信息" />
+  </level>
+  <level>
+    <name value="WARN" />
+    <displayName value="警告" />
+  </level>
+  <level>
+    <name value="ERROR" />
+    <displayName value="错误" />
+  </level>
+  <level>
+    <name value="DEBUG" />
+    <displayName value="调试" />
+  </level>
+  
+  <appender name="console" type="log4net.Appender.ConsoleAppender">
+    <!-- A1 uses PatternLayout -->
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger %ndc - %message%newline" />
+    </layout>
+  </appender>
+  <appender name="RollingFile" type="log4net.Appender.RollingFileAppender">
+    <file value="" />
+    <appendToFile value="true" />
+    <rollingStyle value="Date"/>
+    <datePattern value="yyyy-MM-dd'.log'" />
+    <!--<maximumFileSize value="100KB" />-->
+    <maxSizeRollBackups value="5" />
+    <staticLogFileName value="false"/>
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%date{HH:mm:ss} %level %thread %logger - %message%newline" />
+    </layout>
+  </appender>
+
+  <!-- Set root logger level -->
+  <root>
+    <level value="DEBUG" />
+    <appender-ref ref="RollingFile" />
+    <appender-ref ref="console" />
+  </root>
+</log4net>
